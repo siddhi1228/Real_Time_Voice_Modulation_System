@@ -1,0 +1,151 @@
+
+.modulation-section {
+    min-height: auto;
+    padding-bottom: 7rem;
+    background: var(--second-bg-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modulation-section .heading {
+    font-size: 7rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.modulation-section.heading span {
+    color: var(--highlight-color);
+}
+
+.modulation-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .5rem solid var(--main-color);
+    border-radius: 1.0rem;
+    padding: 5rem;
+    background: var(--bg-color);
+    position: relative;
+    text-align: center;
+    width: 80%;
+    max-width: 900px;
+}
+
+.modulation-options {
+    margin-bottom: 2rem;
+}
+
+.modulation-options button, .modulation-controls button {
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+}
+
+.modulation-controls {
+    margin-bottom: 2rem;
+}
+
+.modulation-controls label {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.modulation-controls input,
+.modulation-controls select {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--main-color);
+    border-radius: .3rem;
+}
+
+#download-modulated-file:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.output-box {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Styling for the new Pitch Shifting Page button */
+#pitch-shifting-page {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#pitch-shifting-page:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.modulation-options {
+    margin-bottom: 2rem;
+}
+
+.modulation-options label {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.modulation-options input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.5rem;
+    background: var(--main-color);
+    border-radius: 0.5rem;
+    outline: none;
+    margin-right: 1rem;
+}
+
+.modulation-options input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background: var(--highlight-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.modulation-options input[type="range"]::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    background: var(--highlight-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#steps-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+@keyframes homeBgText {
+
+    0%,
+    10%,
+    100% {
+        background-position: -33rem 0;
+    }
+
+    65%,
+    85% {
+        background-position: 0 0;
+    }
+}

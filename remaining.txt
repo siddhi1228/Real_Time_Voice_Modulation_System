@@ -1,0 +1,59 @@
+ #     elif action == 'convert_to_female':
+    #         if os.path.exists(audio_file_path):
+    #             with open(audio_file_path, 'rb') as audio_file:
+    #                 output_audio = io.BytesIO()
+    #                 convert_to_female(audio_file, output_audio)
+    #                 output_audio.seek(0)
+    #                 return send_file(output_audio, mimetype="audio/wav", as_attachment=True, download_name="female_voice.wav")
+    #         else:
+    #             return jsonify({'error': 'Audio file not found'}), 404
+
+    #     elif action == 'convert_to_male':
+    #         if os.path.exists(audio_file_path):
+    #             with open(audio_file_path, 'rb') as audio_file:
+    #                 output_audio = io.BytesIO()
+    #                 convert_to_male(audio_file, output_audio)
+    #                 output_audio.seek(0)
+    #                 return send_file(output_audio, mimetype="audio/wav", as_attachment=True, download_name="male_voice.wav")
+    #         else:
+    #             return jsonify({'error': 'Audio file not found'}), 404
+
+    #     elif action == 'pitch_shifting':
+    #         if os.path.exists(audio_file_path):
+    #             n_steps = int(data.get('n_steps', 0))
+    #             with open(audio_file_path, 'rb') as audio_file:
+    #                 output_audio = io.BytesIO()
+    #                 pitch_shifting(audio_file, n_steps, output_audio)
+    #                 output_audio.seek(0)
+    #                 return send_file(output_audio, mimetype="audio/wav", as_attachment=True, download_name="pitch_shifted.wav")
+    #         else:
+    #             return jsonify({'error': 'Audio file not found'}), 404
+
+    #     elif action == 'encrypt_audio':
+    #         key_path = 'secret.key'
+    #         if os.path.exists(audio_file_path) and os.path.exists(key_path):
+    #             with open(audio_file_path, 'rb') as audio_file:
+    #                 with open(key_path, 'rb') as key_file:
+    #                     key = key_file.read()
+    #                 output_audio_path = os.path.join(app.config['UPLOAD_FOLDER'], 'encrypted_audio.enc')
+    #                 encrypt_file(audio_file, key, output_audio_path)
+    #                 return send_file(output_audio_path, mimetype="application/octet-stream", as_attachment=True, download_name="encrypted_audio.enc")
+    #         else:
+    #             return jsonify({'error': 'Audio file or key not found'}), 404
+
+    #     elif action == 'decrypt_audio':
+    #         key_path = 'secret.key'
+    #         if os.path.exists(audio_file_path) and os.path.exists(key_path):
+    #             with open(key_path, 'rb') as key_file:
+    #                 key = key_file.read()
+    #             decrypted_audio_path = os.path.join(app.config['UPLOAD_FOLDER'], 'decrypted_audio.wav')
+    #             decrypt_file(audio_file_path, key, decrypted_audio_path)
+    #             return send_file(decrypted_audio_path, mimetype="audio/wav", as_attachment=True, download_name="decrypted_audio.wav")
+    #         else:
+    #             return jsonify({'error': 'Audio file or key not found'}), 404
+
+    #     else:
+    #         return jsonify({'error': 'Invalid action'}), 400
+
+    # except Exception as e:
+    #     return jsonify({'error': str(e)}), 500

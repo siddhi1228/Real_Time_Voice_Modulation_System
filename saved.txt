@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Modulation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/c.css') }}">
+</head>
+
+<body>
+
+    <!-- Header Design -->
+    <header class="header">
+        <a href="#" class="logo">AI POWERED MODULATION<span class="animate" style="--i:1;"></span></a>
+
+        <div class="bx bx-menu" id="menu-icon"><span class="animate" style="--i:2;"></span></div>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">Record Audio</a>
+            <a href="#education">Options</a>
+
+            <span class="active-nav"></span>
+            <span class="animate" style="--i:2;"></span>
+        </nav>
+    </header>
+
+    <!-- Home Section Design -->
+    <section class="home show-animate" id="home">
+        <div class="home-content">
+            <h2>Welcome to <span></span><span class="animate" style="--i:2;"></span></h2>
+            <div class="text-animate">
+                <h1>AI POWERED VOICE MODULATION</h1>
+                <span class="animate" style="--i:3;"></span>
+            </div>
+            <p>
+                <span class="animate" style="--i:4;"></span>
+            </p>
+
+            <div class="btn-box">
+                <a href="#about" class="btn">Let's Get Started</a>
+                <a href="#education" class="btn">Explore</a>
+                <span class="animate" style="--i:5;"></span>
+            </div>
+        </div>
+
+        <div class="home-imgHover"> 
+            <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="AI Voice Modulation">
+        </div>
+        <span class="animate home-img" style="--i:7;"></span>
+    </section>
+
+    <!-- About Section Design -->
+    <section class="about" id="about">
+        <h2 class="heading">Record <span>Your Audio</span><span class="animate scroll" style="--i:1;"></span></h2>
+        
+        <div class="about-img">
+            <img id="mic-button" src="{{ url_for('static', filename='images/OIP.jpeg') }}"  alt="Microphone Button">
+            <span class="circle-spin"></span>
+            <span class="animate scroll" style="--i:2;"></span>
+        </div>
+    
+        <div class="about-content">
+            <p>
+                <span class="animate scroll" style="--i:4;"></span>
+            </p>
+    
+            <div class="btn-box btns">
+                <a href="#contact" class="btn" onclick="startRecording()">Start Recording</a>
+                <a href="#contact" class="btn" onclick="stopRecording()">Stop Recording</a>
+                <span class="animate scroll" style="--i:5;"></span>
+            </div>
+            
+            <!-- Speech Bubble and Result Display -->
+            <div id="speech-bubble" style="display: none;">Recording...</div>
+            <div id="result"></div>
+            
+            <!-- Recorded Audio Box -->
+            <div id="audio-box" class="audio-box" style="display: none;">
+                <audio id="recorded-audio" controls></audio>
+                <a id="download-link" href="#" download="recording.webm" style="display: none;">Download Recorded Audio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Design -->
+    <footer class="footer">
+        <div class="footer-text">
+            <span class="animate scroll" style="--i:1;"></span>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#"><i class='bx bx-up-arrow-alt'></i></a>
+            <span class="animate scroll" style="--i:3;"></span>
+        </div>
+    </footer>
+
+    <!-- Education Section Design -->
+    <section class="education" id="education">
+        <h2 class="heading">Select <span>Your Choice</span><span class="animate scroll" style="--i:1;"></span></h2>
+
+        <div class="education-row">
+            <div class="education-column">
+                <h3 class="title"><span class="animate scroll" style="--i:2;"></span></h3>
+                <div class="education-box">
+                    <div class="education-content">
+                        <a href="#speech-to-text">
+                            <div class="content">
+                                <div class="year"></div>
+                                <h3>Speech to Text</h3>
+                                <p>Here you can convert your speech to a text file.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="education-content">
+                        <a href="#decryption-section">
+                        <div class="content">
+                            <div class="year"></div>
+                            <h3>Decryption</h3>
+                            <p>Here you can decrypt your audio file.</p>
+                        </div>
+                    </a>
+                    </div>
+
+                    <span class="animate scroll" style="--i:3;"></span>
+                </div>
+            </div>
+
+            <div class="education-column">
+                <h3 class="title"><span class="animate scroll" style="--i:5;"></span></h3>
+
+                <div class="education-box">
+                    <div class="education-content">
+                        <a href="#encryption-section">
+                        <div class="content">
+                            <div class="year"></div>
+                            <h3>Encryption</h3>
+                            <p>The audio file is protected and can be encrypted.</p>
+                        </div>
+                    </a>
+                    </div>
+
+                    <div class="education-content">
+                        <a href="#modulate-audio">
+                        <div class="content">
+                            <div class="year"></div>
+                            <h3>Modulate</h3>
+                            <p>By clicking this option, you can modulate your voice, e.g., change pitch, etc.</p>
+                        </div>
+                        </a>
+                    </div>
+
+                    <span class="animate scroll" style="--i:6;"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="speech-to-text" id="speech-to-text">
+        <h2 class="heading">Speech <span>to Text</span></h2>
+        <div class="speech-box">
+            <textarea id="transcription" rows="10" cols="50" placeholder="Transcription will appear here"></textarea>
+            <p id="error-message" style="display:none; color:red;"></p>
+            <button id="process-button">Process Audio</button>
+        </div>
+    </section>
+
+    <section class="encryption-section" id="encryption-section">
+        <h2 class="heading">Encrypt <span>Audio</span></h2>
+        <div class="encryption-box">
+            <button id="process-encryption-button">Process Audio</button>
+            <div class="secret-key-box">
+                <textarea id="secret-key" rows="1" cols="50" placeholder="Secret key will appear here"></textarea>
+                <button id="copy-key-button">Copy Key</button>
+            </div>
+            <div class="output-box">
+                <textarea id="encrypted-output" rows="10" cols="50" placeholder="Encrypted output will appear here"></textarea>
+                <button id="download-encrypted-file">Download Encrypted File</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="decryption-section" id="decryption-section">
+        <h2 class="heading">Decrypt <span>Audio</span></h2>
+        <div class="decryption-box">
+            <div class="paste-key-box">
+                <textarea id="paste-key" rows="1" cols="50" placeholder="Paste secret key here"></textarea>
+            </div>
+            <button id="process-decryption-button">Process Decryption</button>
+            <div class="output-box">
+                <textarea id="decrypted-output" rows="10" cols="50" placeholder="Decrypted output will appear here"></textarea>
+                <button id="download-decrypted-file">Download Decrypted File</button>
+            </div>
+        </div>
+    </section>
+    <section id="modulate-audio" class="modulation-section">
+        <h2 class="heading">Modulate <span>Audio</span></h2>
+        <div class="modulation-box">
+            <div class="modulation-options">
+                <label for="voice">Voice:</label>
+                <select id="voice"></select>
+            </div>
+            <button id="process-audio-button">Process Audio</button>
+            <div class="output-box">
+                <textarea id="audio-output" readonly></textarea>
+            </div>
+            <button id="download-modulated-file">Download Modulated File</button>
+            <div><a href="#modulate"><button id="pitch-shifting-page">Go for futher modulation</button></a></div>
+        </div>
+    </section>
+    <section id="modulate" class="modulation-section">
+        <h2 class="heading">Pitch <span>Shift</span></h2>
+        <div class="modulation-box">
+            <div class="modulation-options">
+                <label for="steps-slider">Number of Steps:</label>
+                <input type="range" id="steps-slider" min="-12" max="12" step="1" value="0">
+                <span id="steps-value">0</span>
+            </div>
+            <button id="process-audio-button">Process Audio</button>
+            <div class="output-box">
+                <textarea id="audio-output" readonly></textarea>
+            </div>
+            <button id="download-modulated-file">Download Modulated File</button>
+        </div>
+    </section>
+    
+
+    <script src="{{ url_for('static', filename='js/java_script.js') }}"></script>       
+</body>
+</html>
+
+
+let recorder;
+let audioStream;
+
+// MP3-to-WAV conversion functions and classes (from wav-conv.ts)
+// (Include all the conversion functions here)
+
+const audioResample = (buffer, sampleRate) => {
+    const offlineCtx = new OfflineAudioContext(2, (buffer.length / buffer.sampleRate) * sampleRate, sampleRate);
+    const source = offlineCtx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(offlineCtx.destination);
+    source.start();
+    return offlineCtx.startRendering();
+};
+
+const audioReduceChannels = (buffer, targetChannelOpt) => {
+    if (targetChannelOpt === 'both' || buffer.numberOfChannels < 2) return buffer;
+    const outBuffer = new AudioBuffer({
+        sampleRate: buffer.sampleRate,
+        length: buffer.length,
+        numberOfChannels: 1
+    });
+
+    const data = [buffer.getChannelData(0), buffer.getChannelData(1)];
+    const newData = new Float32Array(buffer.length);
+    for (let i = 0; i < buffer.length; ++i)
+        newData[i] =
+            targetChannelOpt === 'left' ? data[0][i] :
+            targetChannelOpt === 'right' ? data[1][i] :
+            (data[0][i] + data[1][i]) / 2;
+    outBuffer.copyToChannel(newData, 0);
+    return outBuffer;
+};
+
+const audioNormalize = (buffer) => {
+    const data = Array.from(Array(buffer.numberOfChannels)).map((_, idx) => buffer.getChannelData(idx));
+    const maxAmplitude = Math.max(...data.map(chan => chan.reduce((acc, cur) => Math.max(acc, Math.abs(cur)), 0)));
+    if (maxAmplitude >= 1.0) return buffer;
+    const coeff = 1.0 / maxAmplitude;
+    data.forEach(chan => {
+        chan.forEach((v, idx) => chan[idx] = v * coeff);
+        buffer.copyToChannel(chan, 0);
+    });
+    return buffer;
+};
+
+const processAudioFile = async (audioBufferIn, targetChannelOpt, targetSampleRate) => {
+    const resampled = await audioResample(audioBufferIn, targetSampleRate);
+    const reduced = audioReduceChannels(resampled, targetChannelOpt);
+    const normalized = audioNormalize(reduced);
+    return normalized;
+};
+
+const audioToRawWave = (audioChannels, bytesPerSample, mixChannels = false) => {
+    const bufferLength = audioChannels[0].length;
+    const numberOfChannels = audioChannels.length === 1 ? 1 : 2;
+    const reducedData = new Uint8Array(bufferLength * numberOfChannels * bytesPerSample);
+    for (let i = 0; i < bufferLength; ++i) {
+        for (let channel = 0; channel < (mixChannels ? 1 : numberOfChannels); ++channel) {
+            const outputIndex = (i * numberOfChannels + channel) * bytesPerSample;
+            let sample;
+            if (!mixChannels) sample = audioChannels[channel][i];
+            else sample = audioChannels.reduce((prv, cur) => prv + cur[i], 0) / numberOfChannels;
+            sample = sample > 1 ? 1 : sample < -1 ? -1 : sample;
+            switch (bytesPerSample) {
+                case 2:
+                    sample = sample * 32767;
+                    reducedData[outputIndex] = sample;
+                    reducedData[outputIndex + 1] = sample >> 8;
+                    break;
+                case 1:
+                    reducedData[outputIndex] = (sample + 1) * 127;
+                    break;
+                default:
+                    throw "Only 8, 16 bits per sample are supported";
+            }
+        }
+    }
+    return reducedData;
+};
+
+const makeWav = (data, channels, sampleRate, bytesPerSample) => {
+    const headerLength = 44;
+    var wav = new Uint8Array(headerLength + data.length);
+    var view = new DataView(wav.buffer);
+
+    view.setUint32(0, 1380533830, false); // RIFF identifier 'RIFF'
+    view.setUint32(4, 36 + data.length, true); // file length minus RIFF identifier length and file description length
+    view.setUint32(8, 1463899717, false); // RIFF type 'WAVE'
+    view.setUint32(12, 1718449184, false); // format chunk identifier 'fmt '
+    view.setUint32(16, 16, true); // format chunk length
+    view.setUint16(20, 1, true); // sample format (raw)
+    view.setUint16(22, channels, true); // channel count
+    view.setUint32(24, sampleRate, true); // sample rate
+    view.setUint32(28, sampleRate * bytesPerSample * channels, true); // byte rate (sample rate * block align)
+    view.setUint16(32, bytesPerSample * channels, true); // block align (channel count * bytes per sample)
+    view.setUint16(34, bytesPerSample * 8, true); // bits per sample
+    view.setUint32(36, 1684108385, false); // data chunk identifier 'data'
+    view.setUint32(40, data.length, true); // data chunk length
+
+    wav.set(data, headerLength);
+
+    return new Blob([wav.buffer], { type: "audio/wav" });
+};
+
+// Start recording function with processing and conversion
+async function startRecording() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        try {
+            audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            recorder = new MediaRecorder(audioStream);
+            recorder.ondataavailable = async e => {
+                const audioBlob = e.data;
+
+                // Convert blob to ArrayBuffer
+                const reader = new FileReader();
+                reader.readAsArrayBuffer(audioBlob);
+                reader.onloadend = async function() {
+                    const arrayBuffer = reader.result;
+                    const audioBuffer = await new AudioContext().decodeAudioData(arrayBuffer);
+
+                    // Process and convert audio to WAV
+                    const targetOptions = {
+                        sampleRate: 44100, // Example sample rate
+                        bytesPerSample: 2, // 16-bit depth
+                        channelOpt: 'both' // Example channel option
+                    };
+                    const processedBuffer = await processAudioFile(audioBuffer, targetOptions.channelOpt, targetOptions.sampleRate);
+                    const rawData = audioToRawWave(
+                        targetOptions.channelOpt === 'both' ? [processedBuffer.getChannelData(0), processedBuffer.getChannelData(1)] : [processedBuffer.getChannelData(0)],
+                        targetOptions.bytesPerSample
+                    );
+                    const wavBlob = makeWav(rawData, targetOptions.channelOpt === 'both' ? 2 : 1, targetOptions.sampleRate, targetOptions.bytesPerSample);
+
+                    // Display and store the audio file
+                    const audio = document.getElementById('recorded-audio');
+                    audio.src = URL.createObjectURL(wavBlob);
+                    audio.style.display = 'block';
+                    document.getElementById('audio-box').style.display = 'block';
+
+                    const downloadLink = document.getElementById('download-link');
+                    downloadLink.href = URL.createObjectURL(wavBlob);
+                    downloadLink.download = 'recorded-audio.wav'; // Ensure WAV file extension
+                    downloadLink.style.display = 'block';
+
+                    // Store in session storage as Base64
+                    const base64Data = await blobToBase64(wavBlob);
+                    sessionStorage.setItem('audioData', base64Data);
+                };
+            };
+            recorder.start();
+            document.getElementById('speech-bubble').style.display = 'block';
+        } catch (err) {
+            alert('Error accessing the microphone: ' + err);
+        }
+    } else {
+        alert('MediaRecorder is not supported in this browser.');
+    }
+}
+
+function stopRecording() {
+    if (recorder) {
+        recorder.stop();
+        audioStream.getAudioTracks()[0].stop();
+        document.getElementById('speech-bubble').style.display = 'none';
+    }
+}
+
+// Convert Blob to Base64
+function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64 = reader.result.split(',')[1];
+            resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+}
+
+// Send audio to server
+async function sendAudioToServer() {
+    const audioData = sessionStorage.getItem('audioData');
+    if (audioData) {
+        const response = await fetch('/process_audio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ audioData: `data:audio/wav;base64,${audioData}`, action: 'speech_to_text' }),
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+                const transcribedText = result.text;
+                document.getElementById('transcription').value = transcribedText;
+            } else {
+                alert('Failed to transcribe audio.');
+            }
+        } else {
+            alert('Error sending audio to server.');
+        }
+    } else {
+        alert('No audio data available in session storage.');
+    }
+}
+
+// Function to populate voice options
+function populateVoiceList() {
+    if (typeof speechSynthesis === 'undefined') {
+      return;
+    }
+  
+    var voices = speechSynthesis.getVoices();
+    var voiceSelect = document.getElementById('voice');
+  
+    voiceSelect.innerHTML = '';
+  
+    var groupedVoices = voices.reduce((acc, voice) => {
+      var lang = voice.lang;
+      if (!acc[lang]) {
+        acc[lang] = [];
+      }
+      acc[lang].push(voice);
+      return acc;
+    }, {});
+  
+    for (var lang in groupedVoices) {
+      var optgroup = document.createElement('optgroup');
+      optgroup.label = lang;
+      groupedVoices[lang].forEach(voice => {
+        var option = document.createElement('option');
+        option.textContent = voice.name + ' (' + voice.lang + ')';
+        option.setAttribute('data-lang', voice.lang);
+        option.setAttribute('data-name', voice.name);
+        optgroup.appendChild(option);
+      });
+      voiceSelect.appendChild(optgroup);
+    }
+  }
+  
+  populateVoiceList();
+  if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = populateVoiceList;
+  }
+  
+  // Start recognition function
+  function startRecognition() {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert("Your browser doesn't support the Web Speech API. Please use Google Chrome.");
+      return;
+    }
+  
+    var recognition = new webkitSpeechRecognition();
+  
+    recognition.continuous = false;
+    recognition.interimResults = true;
+  
+    recognition.lang = 'en-US';
+  
+    recognition.onresult = function(event) {
+      var interimTranscript = '';
+      var finalTranscript = '';
+      for (var i = 0; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
+          finalTranscript += event.results[i][0].transcript;
+        } else {
+          interimTranscript += event.results[i][0].transcript;
+        }
+      }
+      document.getElementById('speech-bubble').innerText = interimTranscript;
+      document.getElementById('result').innerText = finalTranscript;
+    };
+  
+    recognition.onerror = function(event) {
+      alert('Error occurred in recognition: ' + event.error);
+    };
+  
+    recognition.onend = function() {
+      document.getElementById('speech-bubble').style.display = 'none';
+    };
+  
+    document.getElementById('speech-bubble').style.display = 'block';
+    recognition.start();
+  }
+  
+  // Speech synthesis functions
+  let utterance;
+  
+  function speakText() {
+    var resultText = document.getElementById('result').innerText;
+    var inputText = document.getElementById('text-to-speak').value;
+    
+    var textToSpeak = '';
+  
+    if (inputText !== "" && resultText !== "") {
+      textToSpeak = inputText + ". " + resultText;
+    } else if (inputText !== "") {
+      textToSpeak = inputText;
+    } else if (resultText !== "") {
+      textToSpeak = resultText;
+    } else {
+      alert("No text to speak. Please recognize or type some text first.");
+      return;
+    }
+  
+    utterance = new SpeechSynthesisUtterance(textToSpeak);
+  
+    var pitch = document.getElementById('pitch').value;
+    var rate = document.getElementById('rate').value;
+    var voiceSelect = document.getElementById('voice');
+    var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+  
+    utterance.pitch = parseFloat(pitch);
+    utterance.rate = parseFloat(rate);
+  
+    var voices = speechSynthesis.getVoices();
+    utterance.voice = voices.find(voice => voice.name === selectedOption);
+  
+    window.speechSynthesis.speak(utterance);
+  }
+  
+  function stopSpeech() {
+    if (utterance) {
+      speechSynthesis.cancel();
+    }
+  }
+  
+  function pauseSpeech() {
+    if (utterance) {
+      speechSynthesis.pause();
+    }
+  }
+  
+  function resumeSpeech() {
+    if (utterance) {
+      speechSynthesis.resume();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    const stepsSlider = document.getElementById('steps-slider');
+    const stepsValue = document.getElementById('steps-value');
+
+    // Update slider value display
+    stepsSlider.addEventListener('input', function() {
+        stepsValue.textContent = this.value;
+    });
+
+    // Handle audio processing
+    document.getElementById('process-audio-button').addEventListener('click', function() {
+        const steps = stepsSlider.value;
+        // Code to handle audio processing
+        console.log(`Processing audio with ${steps} steps`);
+        // Example: send POST request to server with steps
+    });
+});
+
+  // Adding event listeners
+  document.getElementById('start-recording').addEventListener('click', startRecording);
+  document.getElementById('stop-recording').addEventListener('click', stopRecording);
+  document.getElementById('process-audio').addEventListener('click', sendAudioToServer);
+  
+  document.getElementById('speak').addEventListener('click', speakText);
+  document.getElementById('stop-speech').addEventListener('click', stopSpeech);
+  document.getElementById('pause-speech').addEventListener('click', pauseSpeech);
+  document.getElementById('resume-speech').addEventListener('click', resumeSpeech);
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --bg-color: #081b29;
+    --second-bg-color: #112e42;
+    --text-color: #ededed;
+    --main-color: #00abf0;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: .2s;
+}
+
+.header.sticky {
+    background: var(--bg-color);
+}
+
+.logo {
+    position: relative;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+/* Ensure the header stays at the top with a solid background */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Add a top margin to the body to prevent overlap with the fixed header */
+body {
+    margin-top: 8rem; /* Adjust this value based on the header height */
+}
+
+/* No changes required for the navbar */
+.navbar {
+    position: relative;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-left: 3.5rem;
+    transition: .2s;
+}
+
+.navbar {
+    position: relative;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-left: 3.5rem;
+    transition: .2s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+}
+
+#menu-icon {
+    position: relative;
+    font-size: 3.6rem;
+    color: var(--text-color);
+    cursor: pointer;
+    display: none;
+}
+
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    padding: 0 9%;
+    background: url('/images/home.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home-content {
+    max-width: 100rem;
+    z-index: 99;
+}
+.home-imgHover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    opacity: 0.2;
+}
+
+.home-imgHover:hover {
+    opacity: .8;
+}
+
+.home-content h2 {
+    position: relative;
+    display: inline-block;
+    font-size: 3.12rem; /* change here */
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.home-content h2 span {
+    color: var(--text-color);
+}
+
+.home-content .text-animate {
+    position: relative;
+    width: 32.8rem;
+}
+
+.home-content .text-animate h1 {
+    /* change here */
+    font-size: 5.05rem;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: .8px var(--main-color);
+    background-image: linear-gradient(var(--main-color), var(--main-color));
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: -33rem 0;
+}
+
+.home.show-animate .home-content .text-animate h1 {
+    animation: homeBgText 6s linear infinite;
+    animation-delay: 1s;
+}
+
+.home-content .text-animate h1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-right: 2px solid var(--main-color);
+    z-index: -1;
+}
+
+.home.show-animate .home-content .text-animate h1::before {
+    animation: homeCursorText 6s linear infinite;
+    animation-delay: 1s;
+}
+
+.home-content p {
+    position: relative;
+    font-size: 1.6rem;
+    margin: 2rem 0 4rem;
+}
+
+.btn-box {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 34.5rem;
+    height: 5rem;
+}
+
+.btn-box .btn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 100%;
+    background: var(--main-color);
+    border: .2rem solid var(--main-color);
+    border-radius: .8rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    color: var(--bg-color);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.btn-box .btn:hover {
+    color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2) {
+    background: transparent;
+    color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2):hover {
+    color: var(--bg-color);
+}
+
+.btn-box .btn:nth-child(2)::before {
+    background: var(--main-color);
+}
+
+.btn-box .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--bg-color);
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-box .btn:hover::before {
+    width: 100%;
+}
+
+.home-sci {
+    position: absolute;
+    bottom: 4rem;
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-sci a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--main-color);
+    z-index: 1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.home-sci a:hover {
+    color: var(--bg-color);
+}
+
+.home-sci a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--main-color);
+    z-index: -1;
+    transition: .5s;
+}
+
+.home-sci a:hover::before {
+    width: 100%;
+}
+
+.home-imgHover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    height: 100%;
+    background: transparent;
+    transition: 3s;
+}
+
+.audio-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background: var(--second-bg-color);
+    padding-bottom: 6rem;
+}
+
+.heading {
+    position: relative;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+span {
+    color: var(--main-color);
+}
+
+.about-img {
+    position: relative;
+    width: 25rem;
+    height: 25rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-img img {
+    width: 90%;
+    border-radius: 50%;
+    border: .2rem solid var(--main-color);
+}
+
+.about-img .circle-spin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(0);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-top: .2rem solid var(--second-bg-color);
+    border-bottom: .2rem solid var(--second-bg-color);
+    border-left: .2rem solid var(--main-color);
+    border-right: .2rem solid var(--main-color);
+    animation: aboutSpinner 8s linear infinite;
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-content h3 {
+    position: relative;
+    display: inline-block;
+    font-size: 2.6rem;
+}
+
+.about-content p {
+    position: relative;
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+}
+
+.btn-box.btns {
+    display: inline-block;
+    width: 35rem;
+}
+
+.btn-box.btns a::before {
+    background: var(--second-bg-color);
+}
+#recorded-audio {
+    display: none;
+}
+
+#download-link {
+    display: none;
+}
+
+.education {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: auto;
+    padding-bottom: 5rem;
+}
+
+.education .education-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.education-row .education-column {
+    flex: 1 1 40rem;
+}
+
+.education-column .title {
+    position: relative;
+    display: inline-block;
+    font-size: 2.5rem;
+    margin: 0 0 1.5rem 2rem;
+}
+
+.education-column .education-box {
+    position: relative;
+    border-left: .2rem solid var(--main-color);
+}
+
+.education-box .education-content {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.education-box .education-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1.1rem;
+    width: 2rem;
+    height: 2rem;
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+.education-content .content {
+    position: relative;
+    padding: 1.5rem;
+    border: .2rem solid var(--main-color);
+    border-radius: .6rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.education-content .content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--second-bg-color);
+    z-index: -1;
+    transition: .5s;
+}
+
+.education-content .content:hover::before {
+    width: 100%;
+}
+
+.education-content .content .year {
+    font-size: 1.5rem;
+    color: var(--main-color);
+    padding-bottom: .5rem;
+}
+
+.education-content .content .year i {
+    padding-right: .4rem;
+}
+
+.education-content .content h3 {
+    font-size: 5rem;
+        color: #ffffff; /* Add this line to make the text white */
+}
+
+.education-content .content p {
+    font-size: 1.6rem;
+    padding-top: .5rem;
+    color:#ffffff
+}
+.skills{
+    background: var(--second-bg-color);
+}
+.speech-to-text {
+    min-height: auto;
+    padding-bottom: 7rem;
+    background: var(--second-bg-color);
+    text-align: center;
+}
+
+.speech-to-text .heading {
+    font-size: 7rem;
+    margin-bottom: 1.5rem;
+}
+#process-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+}
+
+#process-button:hover {
+    background: darken(var(--main-color), 10%); /* Adjusted to match hover effect */
+}
+
+
+.speech-box {
+    display: inline-block;
+    border: .5rem solid var(--main-color);
+    border-radius: 1.0rem;
+    padding: 3rem;
+    background: var(--bg-color);
+    position: relative;
+}
+
+.speech-box textarea {
+    width: 500%;
+    height: 300px;
+    border: none;
+    background: transparent;
+    resize: none;
+    padding: 15rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.speech-box button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+}
+
+.speech-box button:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.encryption-section {
+    min-height: auto;
+    padding-bottom: 10rem; /* Increased padding */
+    background: var(--second-bg-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.encryption-section .heading {
+    font-size: 8rem; /* Increased font size */
+    margin-bottom: 2rem; /* Increased margin */
+    text-align: center;
+}
+
+#process-encryption-button {
+    margin-top: 2rem; /* Increased margin */
+    padding: 1rem 2rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#process-encryption-button:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.encryption-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .5rem solid var(--main-color);
+    border-radius: 1.0rem;
+    padding: 5rem; /* Increased padding */
+    background: var(--bg-color);
+    position: relative;
+    text-align: center;
+    width: 80%; /* Increased width */
+}
+
+.secret-key-box {
+    margin-top: 2rem; /* Increased margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%; /* Ensures it takes up full width of parent */
+}
+
+.secret-key-box textarea {
+    width: 130%; /* Increased width */
+    height: 70px; /* Increased height */
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 1.5rem; /* Increased font size */
+    color: var(--text-color);
+    text-align: center;
+}
+
+#copy-key-button {
+    margin-top: 1rem; /* Increased margin */
+    padding: 0.8rem 1.5rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#copy-key-button:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.output-box {
+    margin-top: 5rem; /* Increased margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 300%; /* Ensures it takes up full width of parent */
+}
+
+.output-box textarea {
+    width: 100%; /* Increased width */
+    height: 50px; /* Increased height */
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 1.5rem; /* Increased font size */
+    color: var(--text-color);
+    text-align: center;
+}
+
+#download-encrypted-file {
+    margin-top: 1.5rem; /* Increased margin */
+    padding: 0.8rem 1.5rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#download-encrypted-file:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.decryption-section {
+    min-height: auto;
+    padding-bottom: 7rem;
+    background: var(--second-bg-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.decryption-section .heading {
+    font-size: 7rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#process-decryption-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#process-decryption-button:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.decryption-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .5rem solid var(--main-color);
+    border-radius: 1.0rem;
+    padding: 5rem;
+    background: var(--bg-color);
+    position: relative;
+    text-align: center;
+    width: 80%;
+}
+
+.paste-key-box {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.paste-key-box textarea {
+    width: 120%;
+    height: 50px;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.output-box {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.output-box textarea {
+    width: 120%;
+    height: 150px;
+    border: none;
+    background: transparent;
+    resize: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+#download-decrypted-file {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#download-decrypted-file:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.modulation-section {
+    min-height: auto;
+    padding-bottom: 7rem;
+    background: var(--second-bg-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modulation-section.heading {
+    font-size: 7rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.modulation-section.heading span {
+    color: var(--highlight-color); /* Adjust this to match your design */
+}
+
+.modulation-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: .5rem solid var(--main-color);
+    border-radius: 1.0rem;
+    padding: 5rem;
+    background: var(--bg-color);
+    position: relative;
+    text-align: center;
+    width: 80%;
+    max-width: 900px; /* Adjust as needed for your layout */
+}
+
+.modulation-options {
+    margin-bottom: 2rem;
+}
+
+.modulation-options label {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.modulation-options select {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--main-color);
+    border-radius: .3rem;
+}
+
+#process-audio-button {
+    margin-top: 2rem; /* Increased margin-top for spacing */
+    padding: 0.8rem 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#process-audio-button:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.output-box {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+}
+
+.output-box textarea {
+    width: 100%;
+    height: 100px;
+    background: var(--bg-color);
+    font-size: 1.5rem;
+    color: var(--text-color);
+    padding: 1rem;
+    resize: none;
+    overflow: auto;
+    text-align: center;
+}
+
+#download-modulated-file {
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#download-modulated-file:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+/* Styling for the new Pitch Shifting Page button */
+#pitch-shifting-page {
+    margin-top: 2rem; /* Adds space above the button */
+    padding: 0.8rem 1.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: .3rem;
+    cursor: pointer;
+    background: var(--main-color);
+    color: #fff;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+#pitch-shifting-page:hover {
+    background: darken(var(--main-color), 10%);
+}
+
+.modulation-options {
+    margin-bottom: 2rem;
+}
+
+.modulation-options label {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.modulation-options input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.5rem;
+    background: var(--main-color);
+    border-radius: 0.5rem;
+    outline: none;
+    margin-right: 1rem;
+}
+
+.modulation-options input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background: var(--highlight-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.modulation-options input[type="range"]::-moz-range-thumb {
+    width: 2rem;
+    height: 2rem;
+    background: var(--highlight-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#steps-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+@keyframes homeBgText {
+
+    0%,
+    10%,
+    100% {
+        background-position: -33rem 0;
+    }
+
+    65%,
+    85% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes homeCursorText {
+
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+
+    65%,
+    78%,
+    85% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    75%,
+    81% {
+        opacity: 0;
+    }
+}
+
+@keyframes aboutSpinner {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes showRight {
+    100% {
+        width: 0;
+    }
+}
