@@ -1,4 +1,13 @@
 Flask
 Gunicorn
 flask_cors
-base64
+numpy 
+soundfile 
+librosa 
+pyttsx3 
+speech_recognition 
+cryptography.fernet 
+base64 
+io 
+os 
+tempfile
