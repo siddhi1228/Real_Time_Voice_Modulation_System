@@ -5,7 +5,7 @@ numpy
 soundfile 
 librosa 
 pyttsx3 
-speech_recognition 
+speech_recognition==3.8.1 
 cryptography.fernet 
 base64 
 io 
