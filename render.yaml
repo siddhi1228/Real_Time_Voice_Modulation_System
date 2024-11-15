@@ -1,6 +1,7 @@
 services:
   - type: web
     name: your-service
+    runtime: python
     env: python-3.10
     buildCommand: |
       apt-get update
