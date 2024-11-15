@@ -2,7 +2,7 @@ services:
   - type: web
     name: your-service
     runtime: python
-    env: python-3.10
+    env: python-3.7
     buildCommand: |
       apt-get update
       apt-get install -y python3-pip
