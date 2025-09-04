@@ -1,0 +1,7 @@
+__pycache__/
+env/
+.vscode/
+*.wav
+*.txt
+secret.key
+node_modules/
